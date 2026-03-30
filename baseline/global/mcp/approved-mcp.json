@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "name": "The Sixbell-Dev Way - Approved MCP Catalog",
+  "description": "Approved MCP servers for Sixbell engineering teams.",
+  "approvedServers": [
+    {
+      "id": "context7",
+      "status": "approved",
+      "defaultEnabled": true,
+      "purpose": "Up-to-date documentation for libraries, frameworks, SDKs, and APIs."
+    },
+    {
+      "id": "aws-docs",
+      "status": "approved",
+      "defaultEnabled": true,
+      "purpose": "Official AWS documentation lookup and recommendations."
+    },
+    {
+      "id": "github",
+      "status": "approved",
+      "defaultEnabled": true,
+      "purpose": "Repository, issue, and pull request context and operations.",
+      "restrictedTools": [
+        "delete_repository",
+        "force_push",
+        "merge_pull_request"
+      ]
+    },
+    {
+      "id": "aws-pricing",
+      "status": "approved-conditional",
+      "defaultEnabled": false,
+      "purpose": "AWS pricing and cost analysis for architecture and delivery decisions."
+    }
+  ],
+  "notApprovedByDefault": [
+    "filesystem",
+    "memory",
+    "docker",
+    "kubernetes",
+    "mongodb",
+    "neo4j",
+    "gitlab"
+  ],
+  "rules": [
+    "Only use approved MCP servers in Sixbell engineering workspaces.",
+    "Prefer MCP activation by context or power, not always-on loading.",
+    "Any new MCP server requires team approval.",
+    "Dangerous or write-capable tools must be explicitly reviewed before enablement.",
+    "MCP outputs that affect architecture, cost, or security require human validation."
+  ]
+}

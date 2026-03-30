@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "name": "smoke-on-demand",
+  "description": "Manually triggered hook that runs smoke tests on demand using npm run test:smoke.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run test:smoke --if-present"
+  },
+  "workspaceFolderName": "the-sixbell-dev-way",
+  "shortName": "smoke-on-demand"
+}

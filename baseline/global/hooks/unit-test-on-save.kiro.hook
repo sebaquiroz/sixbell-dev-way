@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "name": "unit-test-on-save",
+  "description": "Run unit tests automatically on save to catch regressions early and keep the feedback loop short",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run test:unit --if-present"
+  },
+  "workspaceFolderName": "the-sixbell-dev-way",
+  "shortName": "unit-test-on-save"
+}

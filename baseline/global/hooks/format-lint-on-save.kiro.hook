@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "name": "format-lint-on-save",
+  "description": "Automatically keep formatting and linting aligned with The Sixbell-Dev Way whenever a source file is saved.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run validate:format --if-present && npm run validate:lint --if-present"
+  },
+  "workspaceFolderName": "the-sixbell-dev-way",
+  "shortName": "format-lint-on-save"
+}

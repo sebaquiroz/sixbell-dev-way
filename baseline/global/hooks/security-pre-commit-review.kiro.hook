@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "name": "security-pre-commit-review",
+  "description": "Manually triggered hook that reviews changed files for security issues according to The Sixbell-Dev Way, checking for secrets, auth weaknesses, insecure configurations, and more.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the current git diff (changed files) for security issues according to The Sixbell-Dev Way.\n\nCheck for the following categories of security issues:\n\n1. API keys, tokens, passwords, secrets, certificates, or hardcoded credentials\n2. Authentication or authorization weaknesses\n3. Unsafe handling of sensitive client data\n4. Insecure cloud configuration assumptions\n5. Missing validation or insecure defaults\n6. Hidden error handling that could mask security issues\n7. Exposure of internal URLs, identifiers, or operational details\n\nFor each issue found, provide:\n\n1. A clear explanation of the security risk\n2. Classification as either **blocking** (must fix before merge) or **warning** (should fix, but not a blocker)\n3. A suggested secure remediation\n4. Whether human security review is required before merge\n\nIf no issues are found, confirm the changes look clean from a security perspective."
+  },
+  "workspaceFolderName": "the-sixbell-dev-way",
+  "shortName": "security-pre-commit-review"
+}
