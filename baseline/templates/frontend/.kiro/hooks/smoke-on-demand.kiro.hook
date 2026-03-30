@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "smoke-on-demand",
+  "description": "Run smoke validation on demand for the frontend template.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run test:smoke --if-present"
+  },
+  "shortName": "smoke-on-demand"
+}

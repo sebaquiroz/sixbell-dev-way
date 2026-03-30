@@ -9,14 +9,12 @@
       "src/**/*.js",
       "src/**/*.jsx",
       "src/**/*.ts",
-      "src/**/*.tsx",
-      "src/**/*.py"
+      "src/**/*.tsx"
     ]
   },
   "then": {
     "type": "runCommand",
     "command": "npm run validate:format --if-present && npm run validate:lint --if-present"
   },
-  "workspaceFolderName": "the-sixbell-dev-way",
   "shortName": "format-lint-on-save"
 }

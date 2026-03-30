@@ -1,0 +1,24 @@
+{
+  "enabled": true,
+  "name": "format-lint-on-save",
+  "description": "Automatically keep formatting and linting aligned with The Sixbell-Dev Way for fullstack template source files.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "apps/web/src/**/*.js",
+      "apps/web/src/**/*.jsx",
+      "apps/web/src/**/*.ts",
+      "apps/web/src/**/*.tsx",
+      "apps/api/src/**/*.js",
+      "apps/api/src/**/*.ts",
+      "packages/shared/src/**/*.js",
+      "packages/shared/src/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run validate:format --if-present && npm run validate:lint --if-present"
+  },
+  "shortName": "format-lint-on-save"
+}

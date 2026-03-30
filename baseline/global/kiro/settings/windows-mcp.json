@@ -8,14 +8,8 @@
       "disabledTools": []
     },
     "aws-docs": {
-      "command": "uv",
-      "args": [
-        "tool",
-        "run",
-        "--from",
-        "awslabs.aws-documentation-mcp-server@latest",
-        "awslabs.aws-documentation-mcp-server.exe"
-      ],
+      "command": "uvx",
+      "args": ["awslabs.aws-documentation-mcp-server@latest"],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR"
       },

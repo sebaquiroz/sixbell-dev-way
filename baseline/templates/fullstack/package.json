@@ -1,0 +1,16 @@
+{
+  "name": "sixbell-fullstack-template",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap:check": "node scripts/bootstrap-check.mjs",
+    "validate:format": "node scripts/validate-format.mjs",
+    "validate:lint": "node scripts/validate-lint.mjs",
+    "test:unit": "node scripts/test-unit.mjs",
+    "test:smoke": "node scripts/test-smoke.mjs"
+  }
+}

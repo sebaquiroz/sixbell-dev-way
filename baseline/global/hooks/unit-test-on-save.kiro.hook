@@ -9,14 +9,12 @@
       "src/**/*.js",
       "src/**/*.jsx",
       "src/**/*.ts",
-      "src/**/*.tsx",
-      "src/**/*.py"
+      "src/**/*.tsx"
     ]
   },
   "then": {
     "type": "runCommand",
     "command": "npm run test:unit --if-present"
   },
-  "workspaceFolderName": "the-sixbell-dev-way",
   "shortName": "unit-test-on-save"
 }

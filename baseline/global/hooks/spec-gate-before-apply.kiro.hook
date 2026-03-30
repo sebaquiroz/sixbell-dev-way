@@ -10,6 +10,5 @@
     "type": "askAgent",
     "prompt": "A spec task is about to be executed. Before proceeding, verify compliance with The Sixbell-Dev Way.\n\nCheck that the following mandatory items are satisfied:\n\n1. The change exists in OpenSpec\n2. The change objective is explicit\n3. Requirements and acceptance criteria are explicit\n4. Technical design exists\n5. Risk level is identified\n6. Security impact is documented\n7. Cost impact is documented\n8. Tasks were reviewed\n9. Human approval exists\n\nIf any mandatory item is missing:\n\n- Classify it as **blocking** (must be resolved before execution can proceed) or **warning** (should be addressed but does not prevent execution)\n- Explain clearly what is missing and why it matters\n- If the issue is classified as blocking, DO NOT proceed with the task — stop progress and inform the user what needs to be resolved first\n\nIf all items are satisfied, confirm compliance and allow the task to proceed."
   },
-  "workspaceFolderName": "the-sixbell-dev-way",
   "shortName": "spec-gate-before-apply"
 }

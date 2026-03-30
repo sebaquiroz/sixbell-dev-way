@@ -148,3 +148,46 @@ The team wants to avoid uncontrolled divergence and excessive context/tool overl
 
 ### Consequence
 Hooks, skills, MCP servers, and powers should be approved and curated rather than left completely open.
+
+---
+
+## Decision 011 — Use a hybrid hook strategy
+
+### Status
+Accepted
+
+### Reason
+Sixbell supports multiple project shapes and technology stacks.
+
+Always-on global hooks are valuable for governance, but stack-specific hooks should stay local to the project template so that commands and file patterns remain accurate.
+
+### Consequence
+Global baseline installation includes governance-oriented hooks, while formatting, linting, testing, smoke, and other stack-specific hooks belong in project templates.
+
+---
+
+## Decision 012 — Use the fullstack template as the Project 0 reference
+
+### Status
+Accepted
+
+### Reason
+The initial target product shape for baseline validation is a fullstack web product on AWS.
+
+Using the fullstack template as the reference reduces ambiguity and gives the team one canonical project bootstrap path.
+
+### Consequence
+The fullstack template becomes the default starting point when a narrower template is not clearly justified.
+
+---
+
+## Decision 013 — Treat powers as optional domain overlays
+
+### Status
+Accepted
+
+### Reason
+Some workflows require extra domain-specific guidance, but that guidance should not always be loaded into every project.
+
+### Consequence
+Powers remain approved optional overlays that teams activate when the domain or delivery workflow justifies them.

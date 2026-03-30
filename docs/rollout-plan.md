@@ -36,6 +36,7 @@ Within the first 6 months, Sixbell should achieve:
 - MCP baseline ready
 - templates ready
 - onboarding guide ready
+- operating model ready
 - PR template and review checklist ready
 
 ### Success criteria
@@ -50,7 +51,7 @@ Within the first 6 months, Sixbell should achieve:
 - validate the baseline against real development activity
 
 ### Deliverables
-- one pilot project using official template
+- one pilot project using the official fullstack template unless a narrower template is clearly sufficient
 - at least one change fully driven through OpenSpec + Kiro
 - PR and review process used end-to-end
 
@@ -157,5 +158,6 @@ The Sixbell-Dev Way can be considered ready for formal v1.0 when:
 - the pilot cycle has completed
 - the team understands the standard
 - templates are usable
+- the fullstack template can bootstrap a real Project 0 repository without structural gaps
 - governance is stable enough
 - the standard has been applied successfully in at least one meaningful product effort

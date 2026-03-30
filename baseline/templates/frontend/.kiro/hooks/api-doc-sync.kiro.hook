@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "api-doc-sync",
+  "description": "Review whether documentation should be synchronized after frontend source changes.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.js",
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A frontend source file changed. Review whether README, CHANGELOG, ADRs, architecture docs, or usage notes should be updated according to The Sixbell-Dev Way."
+  },
+  "shortName": "api-doc-sync"
+}

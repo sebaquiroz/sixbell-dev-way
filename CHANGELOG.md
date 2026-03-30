@@ -6,6 +6,28 @@ The format is inspired by Keep a Changelog, adapted to Sixbell's engineering bas
 
 ---
 
+## [Unreleased]
+
+### Added
+- Operating model document completed
+- Global baseline overview README
+- Context7 usage guide
+- Hooks catalog guide
+- MCP catalog guide
+- Powers catalog guide
+- Templates catalog guide
+- Fullstack project template skeleton with local hooks, `.github/`, docs, OpenSpec, API, and tests placeholders
+- Frontend project template skeleton
+- Backend project template skeleton
+- Initial `sixbell-voicebot-aws` power and steering guidance
+
+### Changed
+- Global install scripts now install governance-oriented global hooks
+- Hook catalog now follows a documented hybrid model (global governance hooks + project-local stack hooks)
+- Global hook files no longer depend on a hardcoded repository name
+- Windows MCP config now uses the same `uvx` strategy as Linux for `aws-docs`
+- README, onboarding, operating model, and installer notes now clarify what the installer does and does not provision, including the current OpenSpec assumption
+
 ## [0.1.0] - 2026-03-27
 
 ### Added

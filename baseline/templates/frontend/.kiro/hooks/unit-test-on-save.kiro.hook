@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "name": "unit-test-on-save",
+  "description": "Run unit validation automatically on save for frontend source files.",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run test:unit --if-present"
+  },
+  "shortName": "unit-test-on-save"
+}

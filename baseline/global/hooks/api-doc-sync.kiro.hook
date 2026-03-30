@@ -8,14 +8,12 @@
     "patterns": [
       "src/**/*.js",
       "src/**/*.ts",
-      "src/**/*.tsx",
-      "src/**/*.py"
+      "src/**/*.tsx"
     ]
   },
   "then": {
     "type": "askAgent",
     "prompt": "A source or API-related file has been saved. Review whether the change affects any project documentation to preserve traceability.\n\nCheck if updates are needed in any of the following:\n\n- README.md\n- OpenAPI / Swagger specs\n- CHANGELOG.md\n- Architecture documentation\n- Usage examples\n- ADR (Architecture Decision Record) references\n\nIf documentation should change:\n\n1. Propose the exact updates needed\n2. Apply them directly if they are straightforward and low-risk\n3. Flag items that require human review before applying\n\nAlways preserve consistency with The Sixbell-Dev Way documentation policy."
   },
-  "workspaceFolderName": "the-sixbell-dev-way",
   "shortName": "api-doc-sync"
 }

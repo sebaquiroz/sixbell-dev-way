@@ -70,6 +70,7 @@ Changes to this repository require human review.
 The following areas must be reviewed when relevant:
 - security implications
 - compatibility with current templates
+- compatibility between hooks and the scripts or stack assumptions used by templates
 - impact on Kiro/OpenSpec usage
 - impact on onboarding
 - impact on operating costs or cognitive overhead
@@ -79,6 +80,7 @@ If the baseline changes, update all relevant artifacts:
 - README
 - CHANGELOG
 - onboarding guide
+- operating model
 - rollout plan
 - risk matrix
 - review checklist

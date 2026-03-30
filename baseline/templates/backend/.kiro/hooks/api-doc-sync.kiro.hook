@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "api-doc-sync",
+  "description": "Review whether documentation should be synchronized after backend source changes.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.js",
+      "src/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A backend source file changed. Review whether README, OpenAPI, CHANGELOG, ADRs, architecture docs, or operational notes should be updated according to The Sixbell-Dev Way."
+  },
+  "shortName": "api-doc-sync"
+}

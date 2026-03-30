@@ -10,6 +10,5 @@
     "type": "runCommand",
     "command": "npm run test:smoke --if-present"
   },
-  "workspaceFolderName": "the-sixbell-dev-way",
   "shortName": "smoke-on-demand"
 }

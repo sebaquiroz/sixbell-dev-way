@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "name": "format-lint-on-save",
+  "description": "Run formatting and linting commands for frontend source files.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run validate:format --if-present && npm run validate:lint --if-present"
+  },
+  "shortName": "format-lint-on-save"
+}
