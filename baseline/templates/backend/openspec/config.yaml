@@ -1,0 +1,18 @@
+schema: sixbell-governed
+context: |
+  Repository type: Sixbell backend template.
+  Default layout: src and api.
+  Primary cloud policy: AWS-first.
+  Approved bootstrap tool surfaces: Kiro and GitHub Copilot.
+  Baseline rule: Replace placeholder validation scripts with the project's real backend toolchain before significant feature work.
+rules:
+  proposal:
+    - State whether the change affects API behavior, service internals, repository bootstrap, or governance assets.
+  specs:
+    - Treat API behavior, operational behavior, bootstrap behavior, and generated tool assets as spec-relevant when they change expected workflow.
+  design:
+    - Explain impact across src, api contracts, and operational docs when more than one area changes.
+  review:
+    - Record security, data sensitivity, cost, rollback, and migration impact for API-facing or operational changes.
+  tasks:
+    - Include validation and documentation work for every affected backend surface.

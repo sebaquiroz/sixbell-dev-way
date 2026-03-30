@@ -23,7 +23,7 @@ Before starting, ensure you have:
 - access to the Sixbell GitHub organization
 - access to the central Sixbell baseline repository
 - Kiro installed
-- Node.js installed if the approved MCP or chosen project template will use Node-based commands
+- Node.js 20.19.0 or higher installed so the baseline can install and update the official OpenSpec CLI
 - Python installed (if your projects require it)
 - Docker installed (recommended, especially for some MCP servers)
 - AWS CLI installed and configured if your role or project needs AWS integration
@@ -31,9 +31,9 @@ Before starting, ensure you have:
 
 Important:
 - the installer copies baseline assets into `~/.kiro/`
+- the installer installs or updates the official OpenSpec CLI when the Node.js prerequisite is satisfied
 - the installer does **not** install Kiro itself
 - the installer does **not** install Node.js, Docker, Python, `uv`, or `uvx`
-- the installer does **not** install an external OpenSpec CLI
 - the installer does **not** create the product repository automatically
 
 ## 3. Clone the baseline repository
@@ -49,7 +49,7 @@ The global baseline should be installed once per developer machine.
 
 This step installs only the global Sixbell baseline for Kiro.
 
-It does not replace project bootstrap, dependency installation, or template customization.
+It also provisions the official OpenSpec CLI, but it does not replace project bootstrap, dependency installation, or template customization.
 
 ### Windows
 Run:
@@ -72,6 +72,10 @@ After installation, verify that Kiro can see:
 - approved skills
 - MCP servers from the installed `mcp.json`
 - global governance hooks installed as part of the baseline
+
+Also verify:
+- `openspec --version` works in a terminal
+- the machine is ready to bootstrap OpenSpec-native project templates
 
 At minimum, the environment should expose:
 - Sixbell steering
@@ -125,7 +129,8 @@ The new repository should include the required baseline structure:
 Important:
 - the global installer does not copy a template into a new repository for you
 - the team must create the new repository from the chosen template
-- after copying the template, install the project's real dependencies and replace placeholder scripts with the selected toolchain
+- after copying the template, run `npm run bootstrap:openspec` and then `npm run bootstrap:verify` to generate approved Kiro and GitHub Copilot assets
+- then install the project's real dependencies and replace placeholder scripts with the selected toolchain
 
 ## 8. Bootstrapping rule for Project 0
 
@@ -140,8 +145,9 @@ That template should become the reference implementation for:
 
 OpenSpec note:
 - Project 0 should contain an `openspec/` directory from day zero
-- the current baseline assumes OpenSpec as repository workflow/artifacts
-- it does not currently install an external OpenSpec CLI for you
+- Project 0 should treat `openspec/specs/` as its live behavioral source of truth
+- active changes should live under `openspec/changes/`
+- the baseline installs the OpenSpec CLI, and the template bootstrap generates the tool-specific OpenSpec assets
 
 ## 9. First change workflow in a new project
 
@@ -188,6 +194,11 @@ For day-to-day engineering work:
 ### Hooks behave incorrectly in a project
 - confirm the project template installed the expected local hooks
 - confirm the scripts referenced by the hooks actually exist in the project
+
+### OpenSpec commands or assets are missing
+- confirm `openspec --version` succeeds
+- confirm the project bootstrap generated the expected `.kiro/` and `.github/` OpenSpec assets
+- rerun the template OpenSpec bootstrap if tool-facing assets are stale
 
 ## 12. Related documents
 

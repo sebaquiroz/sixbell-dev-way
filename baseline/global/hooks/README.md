@@ -27,7 +27,7 @@ Recommended project-local hooks:
 
 | Hook | Trigger | Primary purpose | Recommended scope |
 | --- | --- | --- | --- |
-| `spec-gate-before-apply` | `preTaskExecution` | Blocks progress when mandatory governance artifacts are missing | Global |
+| `spec-gate-before-apply` | `preTaskExecution` | Blocks progress when mandatory OpenSpec and governance artifacts are missing | Global |
 | `architecture-review-manual` | `userTriggered` | Manual architecture review of the current change | Global |
 | `security-pre-commit-review` | `userTriggered` | Manual security review of the current change | Global |
 | `format-lint-on-save` | `fileEdited` | Runs local formatting and linting commands | Project |
@@ -52,6 +52,7 @@ When adding or changing hooks:
 - keep build, test, lint, and smoke hooks inside the relevant project template
 - avoid hard-coding repository names unless a hook is intentionally repo-specific
 - ensure the commands referenced by project hooks exist in the template that installs them
+- when validating OpenSpec readiness, use the official structure (`openspec/specs/`, `openspec/changes/`, `review.md`, etc.) rather than a simplified placeholder model
 
 ## Related files
 

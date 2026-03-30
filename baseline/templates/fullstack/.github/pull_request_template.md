@@ -6,7 +6,9 @@ Describe the change briefly.
 ## OpenSpec Change
 - Change ID:
 - Proposal reviewed: [ ] Yes [ ] No
+- Specs reviewed: [ ] Yes [ ] No
 - Design reviewed: [ ] Yes [ ] No
+- Review artifact approved: [ ] Yes [ ] No
 - Tasks reviewed: [ ] Yes [ ] No
 
 ## Risk Classification

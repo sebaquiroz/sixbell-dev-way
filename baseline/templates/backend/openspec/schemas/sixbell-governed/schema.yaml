@@ -1,0 +1,77 @@
+name: sixbell-governed
+version: 1
+description: Sixbell governed OpenSpec workflow - proposal → specs → design → review → tasks
+artifacts:
+  - id: proposal
+    generates: proposal.md
+    description: Change proposal for a Sixbell baseline or product change
+    template: proposal.md
+    instruction: |
+      Create a concise proposal that explains why the change matters for Sixbell now.
+      Make the scope explicit.
+      Cover the business or engineering reason, the intended behavior change,
+      the affected capabilities, and any rollout or migration impact.
+    requires: []
+
+  - id: specs
+    generates: "specs/**/*.md"
+    description: Behavioral changes expressed as delta specs
+    template: spec.md
+    instruction: |
+      Create delta specs against the current source of truth in openspec/specs/.
+      Use ADDED, MODIFIED, REMOVED, or RENAMED sections as needed.
+      Every requirement must be normative and every requirement must include at
+      least one #### Scenario.
+      Treat changes to installers, governance, hooks, templates, generated
+      assets, or documentation contracts as spec-relevant when they alter
+      expected behavior.
+    requires:
+      - proposal
+
+  - id: design
+    generates: design.md
+    description: Technical design for implementation
+    template: design.md
+    instruction: |
+      Explain how the change will be implemented.
+      Include context, goals, non-goals, major decisions, trade-offs,
+      migration or rollback considerations, cross-platform implications,
+      and how Sixbell governance interacts with the chosen technical approach.
+    requires:
+      - proposal
+
+  - id: review
+    generates: review.md
+    description: Governance review and approval gate
+    template: review.md
+    instruction: |
+      Create the governance review that must be satisfied before implementation.
+      Record risk classification, security impact, cost or operational impact,
+      validation expectations, rollback readiness, and the required human
+      approval state. Classify findings clearly as blocking, warning, or accepted.
+    requires:
+      - specs
+      - design
+
+  - id: tasks
+    generates: tasks.md
+    description: Implementation checklist with trackable tasks
+    template: tasks.md
+    instruction: |
+      Break the work into small, verifiable tasks.
+      Use numbered sections and checkbox items in the form `- [ ] X.Y Description`.
+      Order tasks by dependency and include validation, documentation, and
+      migration work where relevant.
+    requires:
+      - specs
+      - design
+      - review
+
+apply:
+  requires: [tasks]
+  tracks: tasks.md
+  instruction: |
+    Read the proposal, delta specs, design, and review before implementing.
+    Work through unchecked tasks in order and update artifacts if the
+    implementation changes the understanding of the work.
+    Pause for human input when blockers or approval issues remain.

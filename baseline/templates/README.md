@@ -10,8 +10,9 @@ Each template should provide:
 - the required repository structure
 - local `.kiro/` assets when needed
 - `.github/` governance assets
+- an OpenSpec-native `openspec/` tree with project config, live specs, active changes, and any approved custom schema
 - documentation skeletons
-- scripts expected by project hooks
+- scripts expected by project hooks and project bootstrap
 
 ## Official templates
 
@@ -50,4 +51,7 @@ A template is considered usable only if:
 - the documented workflow is coherent
 - local hooks point to real scripts
 - `.github/` and documentation assets are present
+- the template source passes its own bootstrap integrity check
+- a copied repository can generate approved OpenSpec assets for Kiro and GitHub Copilot during bootstrap
+- the repository exposes a clear bootstrap path such as `npm run bootstrap:openspec` followed by `npm run bootstrap:verify`
 - the result is a safe starting point for a real product repository

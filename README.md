@@ -37,25 +37,30 @@ The Sixbell-Dev Way is built around the following decisions:
 
 ## Before you start
 
-The Sixbell-Dev Way installer does **not** provision an entire development machine from zero.
+The Sixbell-Dev Way installer does **not** provision an entire development machine from zero, but it now does provision the official OpenSpec CLI when the machine meets the prerequisite.
 
 Before using this baseline, the team should already have or decide:
 - Kiro installed
 - access to this repository
-- Node.js / `npx` available if the approved MCP or project scripts require it
+- Node.js 20.19.0 or higher available so the baseline can install and update the official OpenSpec CLI
 - Docker available if GitHub MCP will be used
 - `uv` or `uvx` available if AWS-related MCP servers will be used
 - AWS credentials available when AWS-related tooling or projects require them
 
 ## What the installer does
 
-The global installer is intentionally conservative.
+The global installer is intentionally conservative about machine setup, but explicit about the Sixbell engineering baseline.
 
 It installs the global baseline into `~/.kiro/` by copying:
 - steering
 - approved skills
 - approved MCP settings
 - global governance hooks
+
+It also:
+- verifies the Node.js prerequisite for OpenSpec
+- installs or updates the official Fission-AI OpenSpec CLI
+- leaves the machine ready to bootstrap OpenSpec-native Sixbell repositories
 
 ## What the installer does not do
 
@@ -65,25 +70,26 @@ The installer does **not**:
 - create a new product repository for you
 - install project dependencies inside a template
 - choose your final stack-specific formatter, linter, or test runner
-- install an OpenSpec CLI or other external OpenSpec tooling
+- bootstrap project-local OpenSpec assets for Kiro or GitHub Copilot by itself
 
 ## OpenSpec in this baseline
 
-OpenSpec is the source of truth for relevant changes in the methodology.
+The Sixbell-Dev Way adopts the official Fission-AI OpenSpec workflow as the formal engine for relevant changes.
 
-In the current Sixbell baseline, OpenSpec is enforced as:
-- a workflow
-- a required repository folder (`openspec/`)
-- a set of required change artifacts and review expectations
+In this model:
+- `openspec/specs/` is the live source of truth for current agreed behavior
+- `openspec/changes/` contains active or proposed changes
+- `openspec/changes/archive/` preserves completed change history
+- the official OpenSpec CLI manages initialization, workflow assets, and schema-aware change scaffolding
 
-This baseline currently **assumes the OpenSpec workflow and artifacts exist in the repository**.
+Sixbell extends the official engine with corporate governance.
 
-It does **not** currently install or manage an external OpenSpec CLI or binary.
+That means:
+- OpenSpec provides the formal change structure and lifecycle
+- Sixbell provides the approval gates, risk discipline, security posture, AWS-first rules, and review expectations
+- if OpenSpec guidance and Sixbell governance ever conflict locally, Sixbell governance wins inside Sixbell repositories
 
-That means the safe interpretation today is:
-- the methodology requires `openspec/` and its artifacts
-- the installer prepares the Kiro baseline around that workflow
-- if Sixbell later standardizes an official OpenSpec CLI distribution, the installer can be extended explicitly
+This repository itself follows that direction and is being evolved to use official OpenSpec semantics for its own baseline changes.
 
 ## What this repository contains
 
@@ -129,7 +135,9 @@ This repository should be treated as:
 ## Main rules
 
 ### Source of truth
-OpenSpec is the source of truth for structured changes.
+`openspec/specs/` is the source of truth for current structured behavior.
+
+Approved active changes under `openspec/changes/` define in-flight modifications until they are synced and archived.
 
 ### Security
 Security is mandatory and must be considered by default.
@@ -169,15 +177,16 @@ If the team wants to start immediately:
 1. Clone this repository.
 2. Run the global installer once per developer machine.
 3. Create the new product repository from `baseline/templates/fullstack/`.
-4. Open that new repository in Kiro.
-5. Replace the template placeholder scripts with the real toolchain for the product.
-6. Create the first OpenSpec change under `openspec/` before relevant implementation starts.
+4. In the new repository, run `npm run bootstrap:openspec` and then `npm run bootstrap:verify`.
+5. Open that new repository in Kiro.
+6. Replace the template placeholder scripts with the real toolchain for the product.
+7. Create the first OpenSpec change under `openspec/changes/` before relevant implementation starts.
 
-The installer prepares the **global Kiro baseline**.
+The installer prepares the **global Kiro baseline and the OpenSpec CLI**.
 
-The template prepares the **project repository skeleton**.
+The template prepares the **project repository skeleton and OpenSpec project scaffold**.
 
-OpenSpec remains the **source of truth for the change itself**.
+OpenSpec remains the **formal change engine and behavioral source of truth**.
 
 ## Versioning model
 

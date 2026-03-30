@@ -2,7 +2,13 @@
   "name": "sixbell-backend-template",
   "private": true,
   "version": "0.1.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
+    "bootstrap:openspec": "node scripts/bootstrap-openspec.mjs",
+    "bootstrap:check": "node scripts/bootstrap-check.mjs",
+    "bootstrap:verify": "node scripts/bootstrap-check.mjs --bootstrapped",
     "validate:format": "node scripts/validate-format.mjs",
     "validate:lint": "node scripts/validate-lint.mjs",
     "test:unit": "node scripts/test-unit.mjs",

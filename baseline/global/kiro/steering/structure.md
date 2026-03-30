@@ -33,9 +33,21 @@ Recommended substructure:
 - `.kiro/settings/` (only when project-specific overrides are truly needed)
 
 ## OpenSpec Folder
-The `openspec/` directory is the source of truth for structured changes.
+The `openspec/` directory follows the official OpenSpec model.
 
-Changes, proposals, specifications, design decisions, and tasks should live there according to the OpenSpec workflow.
+Expected substructure:
+- `openspec/config.yaml`
+- `openspec/specs/`
+- `openspec/changes/`
+- `openspec/changes/archive/`
+- `openspec/schemas/` when a project uses a custom schema
+
+Interpretation:
+- `openspec/specs/` contains the current agreed behavior
+- `openspec/changes/` contains active changes and their artifacts
+- `openspec/changes/archive/` preserves completed change history
+
+Within Sixbell, the default custom schema is `sixbell-governed`, which introduces an explicit governance `review` artifact before implementation tasks are treated as ready.
 
 ## Documentation Folders
 - `docs/`: supporting product and engineering documentation

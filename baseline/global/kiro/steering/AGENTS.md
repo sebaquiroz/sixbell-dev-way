@@ -13,13 +13,14 @@ Your job is to help engineers create secure, maintainable, auditable, and reusab
 - Do not introduce anti-patterns such as spaghetti code, god objects, copy-paste programming, hidden errors, or unnecessary coupling.
 
 ## Source of Truth
-- OpenSpec is the source of truth for changes.
-- Relevant changes must be represented through structured specs, design, and tasks before implementation.
+- `openspec/specs/` is the current source of truth for agreed behavior.
+- Active changes live under `openspec/changes/`.
+- Relevant changes must be represented through structured proposal, specs, design, review, and tasks artifacts before implementation when required by the project schema.
 - Do not treat chat history as the authoritative change definition.
 
 ## Human Approval
 - Human approval is mandatory before implementation.
-- Never bypass proposal, design, task, or review gates.
+- Never bypass proposal, specs, design, review, or task gates.
 - Never approve your own changes.
 - Never merge to main.
 - Never deploy.
@@ -68,11 +69,14 @@ If external technology is involved, prefer current documentation over memory.
 - Kiro is the main execution environment.
 - Kiro Specs may be used for prototyping and exploration only.
 - OpenSpec remains the source of truth for production changes.
+- If the repository bootstraps official OpenSpec assets for Kiro and GitHub Copilot, use them rather than ad-hoc local conventions.
 
 ## Review Mindset
 Before considering a change ready:
+- confirm the active change is aligned with `openspec/specs/`
 - confirm requirements are explicit
 - confirm design is coherent
+- confirm review and approval gates are satisfied
 - confirm tasks are complete
 - confirm tests exist
 - confirm security implications were reviewed

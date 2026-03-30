@@ -1,5 +1,12 @@
 # OpenSpec
 
-This directory is the source of truth for relevant changes in this project.
+This project uses official OpenSpec with the Sixbell custom schema `sixbell-governed`.
 
-Before implementing a relevant change, add or update the necessary OpenSpec artifacts here.
+Directory semantics:
+- `openspec/specs/` — current agreed behavior
+- `openspec/changes/` — active or proposed changes
+- `openspec/changes/archive/` — completed change history
+- `openspec/config.yaml` — project-level OpenSpec configuration
+- `openspec/schemas/sixbell-governed/` — Sixbell governance overlay for the official workflow
+
+After copying this template into a new repository, run `npm run bootstrap:openspec` to generate the official Kiro and GitHub Copilot OpenSpec assets.

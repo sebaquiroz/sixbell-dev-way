@@ -191,3 +191,70 @@ Some workflows require extra domain-specific guidance, but that guidance should 
 
 ### Consequence
 Powers remain approved optional overlays that teams activate when the domain or delivery workflow justifies them.
+
+---
+
+## Decision 014 — Adopt official Fission-AI OpenSpec as the formal change engine
+
+### Status
+Accepted
+
+### Reason
+The team wants OpenSpec not only as a general idea, but as the official operational engine for structured changes across Sixbell baseline repositories and product templates.
+
+### Consequence
+Sixbell repositories should align to the official OpenSpec model:
+- `openspec/specs/` as the current behavioral source of truth
+- `openspec/changes/` as the space for active changes
+- `openspec/changes/archive/` as auditable change history
+
+### Tradeoff
+This introduces an external upstream dependency and a more explicit CLI-based workflow, but reduces ambiguity and improves portability across tools.
+
+---
+
+## Decision 015 — Install the OpenSpec CLI as part of the Sixbell baseline setup
+
+### Status
+Accepted
+
+### Reason
+If Sixbell formally adopts official OpenSpec, developers should not be expected to recreate that setup manually on every machine.
+
+### Consequence
+The Sixbell global installer will verify prerequisites and install or update the official OpenSpec CLI.
+
+### Tradeoff
+This increases installer responsibility and introduces a Node.js version dependency, but gives the team a predictable bootstrap path.
+
+---
+
+## Decision 016 — Generate official Kiro and GitHub Copilot OpenSpec assets during project bootstrap
+
+### Status
+Accepted
+
+### Reason
+Official OpenSpec assets are tool-specific, evolve upstream, and are better generated per project than copied manually into the templates as frozen vendor artifacts.
+
+### Consequence
+Project templates will bootstrap OpenSpec assets for Kiro and GitHub Copilot during project setup instead of pre-versioning them blindly.
+
+### Tradeoff
+Bootstrap becomes slightly more involved, but downstream repositories stay closer to official OpenSpec behavior and easier to refresh.
+
+---
+
+## Decision 017 — Use a Sixbell custom schema on top of official OpenSpec
+
+### Status
+Accepted
+
+### Reason
+The official `spec-driven` schema is a strong base, but Sixbell requires explicit governance review, risk, security, cost, rollback, and human approval evidence before implementation proceeds.
+
+### Consequence
+Sixbell will define and use a custom schema named `sixbell-governed`, derived from official OpenSpec semantics and adding a `review` artifact before `tasks`.
+
+### Tradeoff
+This adds a small maintenance burden to keep the schema aligned with upstream OpenSpec evolution, but preserves Sixbell-specific governance rigor.

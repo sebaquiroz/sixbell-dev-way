@@ -49,9 +49,16 @@ Examples of changes that do **not** belong here unless justified:
 ## Contribution workflow
 
 ### 1. Open a structured change
-Use the agreed structured change process.
+Use the official OpenSpec workflow for this repository.
 
-If the team is using OpenSpec for governance of this repository as well, create a proper change proposal before implementation.
+Relevant baseline changes should be represented under:
+- `openspec/changes/<change-name>/proposal.md`
+- `openspec/changes/<change-name>/specs/`
+- `openspec/changes/<change-name>/design.md`
+- `openspec/changes/<change-name>/review.md`
+- `openspec/changes/<change-name>/tasks.md`
+
+This repository adopts the Sixbell custom schema `sixbell-governed`, which adds a governance review artifact before implementation tasks are treated as implementation-ready.
 
 ### 2. Explain the reason
 Every proposal must answer:
@@ -60,6 +67,7 @@ Every proposal must answer:
 - what risk the change introduces
 - what impact the change has on onboarding, governance, or maintenance
 - whether existing repositories will need migration or adaptation
+- how the change affects the baseline OpenSpec schema, bootstrap flow, or generated tool assets when applicable
 
 ### 3. Keep the scope explicit
 Avoid mixing unrelated updates in the same change.
@@ -97,6 +105,7 @@ Every PR should include:
 - whether onboarding is impacted
 - whether existing projects are impacted
 - whether a migration note is required
+- the related OpenSpec change identifier or path
 
 ## Quality expectations
 
@@ -108,6 +117,11 @@ Changes to this repository should be:
 - aligned with The Sixbell-Dev Way itself
 
 In other words, this repository must follow the same discipline it expects from product repositories.
+
+For this repository, that means:
+- `openspec/specs/` describes the current agreed behavior of the baseline
+- `openspec/changes/` contains active baseline changes
+- completed changes should eventually be synced and archived rather than left as implicit chat history
 
 ## Review questions
 

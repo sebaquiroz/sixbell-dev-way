@@ -45,24 +45,24 @@ This layer provides:
 - optional context that should not always be loaded
 
 ### 4. OpenSpec change artifacts
-Stored inside the project repository.
+Stored inside the project repository and managed through the official OpenSpec model.
 
-This layer is the structured source of truth for relevant changes.
-
-At the current maturity level of the baseline, OpenSpec is treated as:
-- a required workflow
-- a required repository artifact structure
-- not as an installer-managed external CLI dependency
+This layer provides:
+- `openspec/specs/` as the current behavioral source of truth
+- `openspec/changes/` as the structured space for active changes
+- `openspec/changes/archive/` as the preserved change history
+- `openspec/config.yaml` and optional custom schemas for repository-specific workflow behavior
 
 ## Source of truth hierarchy
 
 When there is ambiguity, use this order of precedence:
 
-1. approved OpenSpec artifacts
-2. approved repository governance files
-3. approved baseline rules from The Sixbell-Dev Way
-4. implementation in code
-5. chat history
+1. approved current specs under `openspec/specs/`
+2. approved active change artifacts under `openspec/changes/`
+3. approved repository governance files
+4. approved baseline rules from The Sixbell-Dev Way
+5. implementation in code
+6. chat history
 
 Chat is useful for collaboration, but it is not the authoritative change definition.
 
@@ -111,10 +111,18 @@ At minimum, define:
 ### Step 2 — Create the OpenSpec change
 Relevant changes must be represented in OpenSpec before implementation.
 
+For Sixbell repositories, the expected active change structure is:
+- `openspec/changes/<change-name>/proposal.md`
+- `openspec/changes/<change-name>/specs/`
+- `openspec/changes/<change-name>/design.md`
+- `openspec/changes/<change-name>/review.md`
+- `openspec/changes/<change-name>/tasks.md`
+
 Include when applicable:
 - requirements
 - acceptance criteria
 - technical design
+- governance review
 - risks
 - non-functional requirements
 - test strategy
@@ -134,7 +142,8 @@ Use `governance/risk-matrix.md` as the operational reference.
 Implementation does not start until:
 - the change was reviewed
 - the design was reviewed
-- the tasks were reviewed
+- the governance review exists
+- the tasks were reviewed against the approved review outcome
 - the risk was identified
 - human approval exists
 
@@ -165,8 +174,9 @@ Align code with:
 
 ### Step 8 — Archive and sync
 After the change is accepted:
+- sync delta specs into `openspec/specs/`
+- move the completed change into `openspec/changes/archive/`
 - sync documentation
-- close or archive the OpenSpec change according to the workflow
 - capture any baseline lesson that should become reusable guidance
 
 ## Standard workflow for a new project
@@ -188,20 +198,26 @@ Install the global baseline so the developer environment has:
 - approved skills
 - approved MCP servers
 - global governance hooks
+- the official OpenSpec CLI
 
-This step does not install or bootstrap the product repository itself.
-
-It also does not install an external OpenSpec CLI.
+This step does not bootstrap the product repository itself.
 
 ### Step 4 — Keep project-specific automation local
 Project-specific hooks, scripts, `.github/` files, and delivery mechanics belong inside the project template.
 
 This avoids forcing one stack's commands on another stack.
 
-### Step 5 — Create or update OpenSpec artifacts in the repository
-Once the repository exists, the team works inside the project's own `openspec/` folder.
+### Step 5 — Bootstrap OpenSpec tool assets for the project
+Once the repository exists, run the project bootstrap so the repository can generate its official OpenSpec assets for approved tool surfaces such as Kiro and GitHub Copilot.
 
-The current baseline assumes those artifacts are managed as repository content.
+In the current Node-based templates, that means running:
+- `npm run bootstrap:openspec`
+- `npm run bootstrap:verify`
+
+Sixbell templates keep governance files, hooks, and documentation in version control, while OpenSpec generates the tool-facing workflow assets during project bootstrap.
+
+### Step 6 — Create or update OpenSpec artifacts in the repository
+Once the repository is bootstrapped, the team works inside the project's own `openspec/` tree using the `sixbell-governed` schema unless an approved exception exists.
 
 ## Hook model
 
@@ -212,6 +228,8 @@ Global hooks should be limited to governance or review actions that are broadly 
 - spec gates
 - manual architecture review
 - manual security review
+
+These hooks should validate the official OpenSpec structure, not a simplified or tool-specific approximation of it.
 
 ### Project hooks
 Project hooks should handle stack-specific actions, such as:

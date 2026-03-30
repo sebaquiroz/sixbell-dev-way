@@ -1,0 +1,24 @@
+schema: sixbell-governed
+context: |
+  Repository: The Sixbell-Dev Way
+  Purpose: Corporate baseline for AI-assisted software development at Sixbell.
+  Primary environment: Kiro.
+  Secondary tool surface: GitHub Copilot-compatible prompts and skills.
+  Cloud policy: AWS-first.
+  Approval policy: Human approval is required before relevant implementation begins.
+  Governance policy: Security, risk, cost, documentation alignment, and auditability are mandatory.
+  Repository scope: Changes may affect the global baseline, project templates, governance files, or project bootstrap flows.
+rules:
+  proposal:
+    - Identify whether the change affects the baseline repository, project templates, or both.
+    - State migration or rollout impact on downstream Sixbell repositories when relevant.
+  specs:
+    - Treat behavioral changes to installers, governance rules, hooks, templates, generated assets, or onboarding contracts as spec-relevant.
+    - Keep capability names in kebab-case and reuse existing names when modifying live specs.
+  design:
+    - Explain Windows and Linux differences when installers, bootstrap scripts, or tool generation are affected.
+    - Make precedence explicit whenever official OpenSpec behavior intersects with Sixbell governance.
+  review:
+    - Record risk classification, security impact, cost or operational impact, rollback posture, and required human approval evidence.
+  tasks:
+    - Include validation, documentation, and migration tasks when the change affects baseline behavior or project bootstrap.
