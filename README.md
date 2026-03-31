@@ -55,7 +55,6 @@ It installs the global baseline into `~/.kiro/` by copying:
 - steering
 - approved skills
 - approved MCP settings
-- global governance hooks
 
 It also:
 - verifies the Node.js prerequisite for OpenSpec
@@ -70,6 +69,7 @@ The installer does **not**:
 - create a new product repository for you
 - install project dependencies inside a template
 - choose your final stack-specific formatter, linter, or test runner
+- install hooks into `~/.kiro/`, because Kiro currently supports hooks only per workspace
 - bootstrap project-local OpenSpec assets for Kiro or GitHub Copilot by itself
 
 ## OpenSpec in this baseline
@@ -99,7 +99,7 @@ This repository provides the baseline needed to standardize AI-assisted developm
 Located under `baseline/global/`, this includes:
 - Kiro steering files
 - Kiro global skills
-- governance-oriented global hooks
+- governance hook catalog
 - MCP configuration
 - installation scripts
 
@@ -184,7 +184,7 @@ If the team wants to start immediately:
 
 The installer prepares the **global Kiro baseline and the OpenSpec CLI**.
 
-The template prepares the **project repository skeleton and OpenSpec project scaffold**.
+The template prepares the **project repository skeleton, workspace-local hooks, and OpenSpec project scaffold**.
 
 OpenSpec remains the **formal change engine and behavioral source of truth**.
 

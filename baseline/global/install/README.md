@@ -8,7 +8,6 @@ They copy the approved Sixbell baseline into the user's `~/.kiro/` directory:
 - steering
 - approved skills
 - approved MCP configuration
-- global governance hooks
 
 They also:
 - validate that Node.js 20.19.0 or higher is available
@@ -22,6 +21,7 @@ They do **not**:
 - install Node.js, Docker, Python, `uv`, or `uvx`
 - create a new product repository
 - install project dependencies
+- install hooks into `~/.kiro/`, because Kiro currently supports hooks only per workspace
 - generate project-local OpenSpec assets for Kiro or GitHub Copilot by themselves
 
 ## OpenSpec note
@@ -31,6 +31,7 @@ The Sixbell baseline now adopts official Fission-AI OpenSpec as the formal chang
 That means:
 - the global installer provisions the shared OpenSpec CLI prerequisite
 - each project should contain its own `openspec/` tree with `config.yaml`, `specs/`, `changes/`, and `changes/archive/`
+- official project templates are responsible for carrying workspace-local hooks into `.kiro/hooks/`
 - project-local tool-facing assets are generated during template bootstrap, not by the global installer alone
 
 If the `openspec` executable is not available after installation, ensure your npm global bin directory is on `PATH` and rerun the installer.

@@ -4,7 +4,7 @@ Use this template for API-first or service-first repositories.
 
 ## Included
 - required governance files
-- local `.kiro/hooks/`
+- local `.kiro/hooks/` with governance and backend-compatible automation
 - `.github/pull_request_template.md`
 - an OpenSpec-native repository tree with the Sixbell custom schema
 - docs, ADR, API, and tests placeholders
@@ -23,6 +23,8 @@ Use this template for API-first or service-first repositories.
 
 This template is intentionally backend-generic.
 
-If the project becomes Python-first, replace the local hooks and scripts with the appropriate Python tooling while preserving the same governance model.
+If the project becomes Python-first, replace the local stack hooks and scripts with the appropriate Python tooling while preserving the same governance hooks and governance model.
+
+The governance hooks are committed directly into this template because Kiro currently supports hooks only per workspace.
 
 Generated OpenSpec skills and prompts are intentionally created during project bootstrap, not pre-committed in the source template.

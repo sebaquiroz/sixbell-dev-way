@@ -16,6 +16,16 @@ A repository created from this template SHALL include an OpenSpec tree containin
 - **THEN** the repository SHALL contain `openspec/config.yaml`, `openspec/specs/`, `openspec/changes/`, and `openspec/changes/archive/`
 - **AND** the repository SHALL include the `sixbell-governed` schema files required for local validation
 
+### Requirement: The template includes workspace-local governance hooks
+
+A repository created from this template SHALL include `.kiro/hooks/` with the governance hooks required by The Sixbell-Dev Way and the automation hooks compatible with the backend template.
+
+#### Scenario: New repository is created from the template
+
+- **WHEN** the template is copied into a new repository
+- **THEN** `.kiro/hooks/` SHALL contain the governance hooks required by the baseline
+- **AND** any hook that executes repository commands SHALL match scripts or files shipped with the backend template
+
 ### Requirement: Bootstrap generates official Kiro and GitHub Copilot assets
 
 The project bootstrap SHALL generate the official OpenSpec prompts and skills for the approved tool surfaces.

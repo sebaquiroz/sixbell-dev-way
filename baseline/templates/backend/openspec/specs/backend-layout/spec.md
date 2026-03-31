@@ -26,12 +26,13 @@ The repository SHALL keep `docs/`, `adr/`, `api/`, `tests/`, `.github/`, `.kiro/
 - **THEN** the supporting governance and documentation directories SHALL be present
 - **AND** their purpose SHALL remain understandable to any Sixbell engineer
 
-### Requirement: Local hooks point to repository-owned scripts
+### Requirement: Workspace hooks stay repository-owned and template-compatible
 
-The repository SHALL provide local scripts for formatting, linting, unit validation, and smoke validation so project hooks do not point to missing commands.
+The repository SHALL carry its runtime Kiro hooks under `.kiro/hooks/`, including the governance hooks required by The Sixbell-Dev Way and the backend automation hooks that match the template's scripts.
 
 #### Scenario: A project-local hook executes
 
 - **WHEN** a configured local hook runs from `.kiro/hooks/`
-- **THEN** the referenced command SHALL exist in the repository
+- **THEN** the required governance hooks SHALL be present without depending on user-level hook installation
+- **AND** any referenced command SHALL exist in the repository
 - **AND** the hook SHALL not depend on undeclared per-developer shell aliases

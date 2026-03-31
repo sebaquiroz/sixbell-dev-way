@@ -4,18 +4,22 @@ This directory contains the official Kiro hook catalog for The Sixbell-Dev Way.
 
 ## Hook strategy
 
-The baseline uses a **hybrid hook model**.
+The baseline uses a **central catalog + workspace execution model**.
 
-### Global hooks
-These hooks are appropriate for user-level installation because they are stack-agnostic and governance-oriented.
+Kiro currently supports hooks only per workspace.
 
-Recommended global hooks:
+That means this directory is the approved catalog of hooks, but the runtime hook files that Kiro executes should live under each repository's `.kiro/hooks/`.
+
+### Governance hooks for all official templates
+These hooks are stack-agnostic and should be copied into every official Sixbell template so they are available in each workspace.
+
+Recommended governance hooks:
 - `spec-gate-before-apply.kiro.hook`
 - `architecture-review-manual.kiro.hook`
 - `security-pre-commit-review.kiro.hook`
 
-### Project hooks
-These hooks are typically better inside project templates because they depend on local scripts, stack choices, or repository structure.
+### Template-compatible automation hooks
+These hooks are still project-local because they depend on local scripts, stack choices, or repository structure.
 
 Recommended project-local hooks:
 - `format-lint-on-save.kiro.hook`
@@ -27,15 +31,23 @@ Recommended project-local hooks:
 
 | Hook | Trigger | Primary purpose | Recommended scope |
 | --- | --- | --- | --- |
-| `spec-gate-before-apply` | `preTaskExecution` | Blocks progress when mandatory OpenSpec and governance artifacts are missing | Global |
-| `architecture-review-manual` | `userTriggered` | Manual architecture review of the current change | Global |
-| `security-pre-commit-review` | `userTriggered` | Manual security review of the current change | Global |
-| `format-lint-on-save` | `fileEdited` | Runs local formatting and linting commands | Project |
-| `unit-test-on-save` | `fileEdited` | Runs local unit tests | Project |
-| `smoke-on-demand` | `userTriggered` | Runs local smoke validation | Project |
-| `api-doc-sync` | `fileEdited` | Reviews whether docs should be synchronized after code changes | Project |
+| `spec-gate-before-apply` | `preTaskExecution` | Blocks progress when mandatory OpenSpec and governance artifacts are missing | Workspace (all official templates) |
+| `architecture-review-manual` | `userTriggered` | Manual architecture review of the current change | Workspace (all official templates) |
+| `security-pre-commit-review` | `userTriggered` | Manual security review of the current change | Workspace (all official templates) |
+| `format-lint-on-save` | `fileEdited` | Runs local formatting and linting commands | Workspace (matching template) |
+| `unit-test-on-save` | `fileEdited` | Runs local unit tests | Workspace (matching template) |
+| `smoke-on-demand` | `userTriggered` | Runs local smoke validation | Workspace (matching template) |
+| `api-doc-sync` | `fileEdited` | Reviews whether docs should be synchronized after code changes | Workspace (matching template) |
 
-## Why the hook model is hybrid
+## Why the execution model is workspace-local
+
+Kiro does not currently load hooks from `~/.kiro/`, so installing runtime hooks globally would create a false expectation.
+
+The catalog still belongs here because Sixbell wants one approved place to author, review, and evolve hooks.
+
+Official templates then carry the relevant hook files into `.kiro/hooks/` for the workspace that Kiro actually runs.
+
+## Why templates still split governance vs stack hooks
 
 Sixbell supports multiple stacks and not all repositories should inherit the same runtime commands.
 
@@ -48,7 +60,8 @@ If all hooks are forced globally, the baseline becomes noisy or wrong.
 ## Authoring rules
 
 When adding or changing hooks:
-- prefer stack-agnostic governance hooks for the global baseline
+- treat this directory as the centrally curated source for approved hooks
+- copy governance hooks into every official template because Kiro executes them at workspace scope
 - keep build, test, lint, and smoke hooks inside the relevant project template
 - avoid hard-coding repository names unless a hook is intentionally repo-specific
 - ensure the commands referenced by project hooks exist in the template that installs them

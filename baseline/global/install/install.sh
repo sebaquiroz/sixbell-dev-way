@@ -63,18 +63,16 @@ HOME_KIRO="$HOME/.kiro"
 STEERING_TARGET="$HOME_KIRO/steering"
 SKILLS_TARGET="$HOME_KIRO/skills"
 SETTINGS_TARGET="$HOME_KIRO/settings"
-HOOKS_TARGET="$HOME_KIRO/hooks"
+LEGACY_HOOKS_TARGET="$HOME_KIRO/hooks"
 
 mkdir -p "$STEERING_TARGET"
 mkdir -p "$SKILLS_TARGET"
 mkdir -p "$SETTINGS_TARGET"
-mkdir -p "$HOOKS_TARGET"
 
 STEERING_SOURCE="$REPO_ROOT/baseline/global/kiro/steering"
 SKILLS_SOURCE="$REPO_ROOT/baseline/global/kiro/skills"
 MCP_SOURCE="$REPO_ROOT/baseline/global/kiro/settings/linux-mcp.json"
 MCP_TARGET="$SETTINGS_TARGET/mcp.json"
-HOOKS_SOURCE="$REPO_ROOT/baseline/global/hooks"
 
 echo "Copying steering files..."
 cp -R "$STEERING_SOURCE/"* "$STEERING_TARGET/"
@@ -85,24 +83,27 @@ cp -R "$SKILLS_SOURCE/"* "$SKILLS_TARGET/"
 echo "Installing MCP config..."
 cp "$MCP_SOURCE" "$MCP_TARGET"
 
-echo "Installing global governance hooks..."
-for hook in \
-	"spec-gate-before-apply.kiro.hook" \
-	"architecture-review-manual.kiro.hook" \
-	"security-pre-commit-review.kiro.hook"
-do
-	cp "$HOOKS_SOURCE/$hook" "$HOOKS_TARGET/$hook"
-done
+if [ -d "$LEGACY_HOOKS_TARGET" ]; then
+	echo "Removing legacy TSDV hooks from ~/.kiro/hooks because Kiro currently supports hooks only per workspace..."
+	for hook in \
+		"spec-gate-before-apply.kiro.hook" \
+		"architecture-review-manual.kiro.hook" \
+		"security-pre-commit-review.kiro.hook"
+	do
+		rm -f "$LEGACY_HOOKS_TARGET/$hook"
+	done
+	rmdir "$LEGACY_HOOKS_TARGET" 2>/dev/null || true
+fi
 
 echo "The Sixbell-Dev Way baseline installed successfully."
-echo "What this installer did: validated Node.js $NODE_VERSION_RAW, installed/updated OpenSpec CLI ($OPENSPEC_VERSION), and copied steering, skills, MCP config, and global governance hooks into ~/.kiro"
+echo "What this installer did: validated Node.js $NODE_VERSION_RAW, installed/updated OpenSpec CLI ($OPENSPEC_VERSION), and copied steering, skills, and MCP config into ~/.kiro"
 echo "What this installer did NOT do: install Kiro, Node.js, Docker, uv/uvx, or create a new product repository"
 echo "Next steps:"
 echo "1. Open Kiro"
 echo "2. Verify steering files appear in the steering panel"
 echo "3. Verify MCP servers appear in the MCP panel"
-echo "4. Verify global governance hooks appear in the hooks panel"
-echo "5. Verify 'openspec --version' works in a terminal"
-echo "6. Create a repository from an official project template to get project-local hooks, scripts, and OpenSpec bootstrap assets"
+echo "4. Verify 'openspec --version' works in a terminal"
+echo "5. Create a repository from an official project template to get workspace-local hooks, scripts, and OpenSpec bootstrap assets"
+echo "6. Open the new repository in Kiro and confirm the template's .kiro/hooks are visible in the hooks panel"
 echo "7. Run the project template's OpenSpec bootstrap before relevant implementation begins"
 echo "8. Import/install approved Powers from the central repository as needed"

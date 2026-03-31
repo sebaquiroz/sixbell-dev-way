@@ -24,14 +24,14 @@ This layer provides:
 - global steering
 - approved global skills
 - approved MCP configuration
-- global governance hooks that are stack-agnostic
+- the shared OpenSpec CLI prerequisite installed by the global installer
 
 ### 2. Project baseline
 Created from an official project template under `baseline/templates/`.
 
 This layer provides:
 - repository structure
-- local `.kiro/hooks/` for stack-specific automation
+- local `.kiro/hooks/` for governance and template-compatible automation
 - `.github/` project governance assets
 - documentation skeletons
 - scripts expected by the local hooks
@@ -153,7 +153,7 @@ During implementation:
 - follow steering rules
 - use Context7 for external technology work
 - use approved MCP servers only
-- use project hooks and global governance hooks
+- use project hooks, including the governance hooks carried by the active project template
 
 ### Step 6 — Validate the change
 Before recommending a PR or merge:
@@ -197,13 +197,12 @@ Install the global baseline so the developer environment has:
 - steering
 - approved skills
 - approved MCP servers
-- global governance hooks
 - the official OpenSpec CLI
 
 This step does not bootstrap the product repository itself.
 
-### Step 4 — Keep project-specific automation local
-Project-specific hooks, scripts, `.github/` files, and delivery mechanics belong inside the project template.
+### Step 4 — Keep hooks and project-specific automation local
+Project hooks, scripts, `.github/` files, and delivery mechanics belong inside the project template.
 
 This avoids forcing one stack's commands on another stack.
 
@@ -221,18 +220,20 @@ Once the repository is bootstrapped, the team works inside the project's own `op
 
 ## Hook model
 
-The Sixbell-Dev Way uses a hybrid hook model.
+The Sixbell-Dev Way uses a centrally curated hook catalog with workspace-local execution.
 
-### Global hooks
-Global hooks should be limited to governance or review actions that are broadly reusable, such as:
+### Cataloged governance hooks
+The baseline catalog should define governance or review hooks that are broadly reusable, such as:
 - spec gates
 - manual architecture review
 - manual security review
 
+Because Kiro currently supports hooks only per workspace, official templates should carry these governance hooks into `.kiro/hooks/` for every project.
+
 These hooks should validate the official OpenSpec structure, not a simplified or tool-specific approximation of it.
 
-### Project hooks
-Project hooks should handle stack-specific actions, such as:
+### Template automation hooks
+Template-specific hooks should handle stack-specific actions, such as:
 - formatting
 - linting
 - unit tests

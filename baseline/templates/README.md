@@ -8,7 +8,7 @@ Templates exist to turn the corporate baseline into a project that is immediatel
 
 Each template should provide:
 - the required repository structure
-- local `.kiro/` assets when needed
+- local `.kiro/` assets, including workspace hooks for governance and template-compatible automation
 - `.github/` governance assets
 - an OpenSpec-native `openspec/` tree with project config, live specs, active changes, and any approved custom schema
 - documentation skeletons
@@ -49,6 +49,7 @@ Every template must remain aligned with:
 A template is considered usable only if:
 - the structure is complete
 - the documented workflow is coherent
+- the workspace includes the governance hooks required by The Sixbell-Dev Way
 - local hooks point to real scripts
 - `.github/` and documentation assets are present
 - the template source passes its own bootstrap integrity check

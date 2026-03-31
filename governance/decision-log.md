@@ -154,7 +154,7 @@ Hooks, skills, MCP servers, and powers should be approved and curated rather tha
 ## Decision 011 — Use a hybrid hook strategy
 
 ### Status
-Accepted
+Accepted (superseded in practice by Decision 018)
 
 ### Reason
 Sixbell supports multiple project shapes and technology stacks.
@@ -258,3 +258,23 @@ Sixbell will define and use a custom schema named `sixbell-governed`, derived fr
 
 ### Tradeoff
 This adds a small maintenance burden to keep the schema aligned with upstream OpenSpec evolution, but preserves Sixbell-specific governance rigor.
+
+---
+
+## Decision 018 — Treat Kiro hooks as workspace-local runtime assets
+
+### Status
+Accepted
+
+### Reason
+Kiro currently supports hooks only per workspace, not as globally installed runtime hooks under `~/.kiro/`.
+
+Sixbell still wants one approved hook catalog, but the executable hook files must live where Kiro actually loads them.
+
+### Consequence
+- `baseline/global/hooks/` becomes the centrally curated hook catalog
+- the global installer stops installing hooks into `~/.kiro/`
+- official project templates must include the governance hooks plus the stack-compatible automation hooks they support under `.kiro/hooks/`
+
+### Tradeoff
+This duplicates a small set of governance hook files across templates, but keeps the methodology aligned with Kiro's real behavior and avoids false expectations during onboarding.

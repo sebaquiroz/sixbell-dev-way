@@ -4,6 +4,9 @@ const isBootstrapped = process.argv.includes('--bootstrapped');
 
 const templatePaths = [
   '.github/pull_request_template.md',
+  '.kiro/hooks/spec-gate-before-apply.kiro.hook',
+  '.kiro/hooks/architecture-review-manual.kiro.hook',
+  '.kiro/hooks/security-pre-commit-review.kiro.hook',
   '.kiro/hooks/api-doc-sync.kiro.hook',
   '.kiro/hooks/format-lint-on-save.kiro.hook',
   '.kiro/hooks/unit-test-on-save.kiro.hook',

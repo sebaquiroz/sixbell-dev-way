@@ -16,8 +16,8 @@ Global Kiro assets that are intended to be installed under `~/.kiro/`:
 The corporate hook catalog.
 
 This catalog includes both:
-- global governance hooks that can be installed centrally
-- project-oriented hooks that should usually be copied through a template
+- governance hooks that official templates should carry into each workspace
+- project-oriented hooks that should usually be copied through the matching template
 
 ### `mcp/`
 The approved MCP catalog and usage guidance.
@@ -30,10 +30,10 @@ Installation scripts for Windows and Linux.
 
 ## Installation model
 
-The recommended operating model is hybrid:
+The recommended operating model is:
 
-- install steering, skills, MCP settings, and global governance hooks once per user
-- keep stack-specific hooks inside each project template
+- install steering, skills, and MCP settings once per user
+- keep runtime hooks inside each project template, even when they come from the centrally curated catalog
 
 This keeps the global baseline reusable while allowing frontend, backend, and fullstack projects to evolve their own local automation safely.
 

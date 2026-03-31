@@ -34,6 +34,7 @@ Important:
 - the installer installs or updates the official OpenSpec CLI when the Node.js prerequisite is satisfied
 - the installer does **not** install Kiro itself
 - the installer does **not** install Node.js, Docker, Python, `uv`, or `uvx`
+- the installer does **not** install hooks globally into `~/.kiro/`, because Kiro currently supports hooks only per workspace
 - the installer does **not** create the product repository automatically
 
 ## 3. Clone the baseline repository
@@ -71,7 +72,6 @@ After installation, verify that Kiro can see:
 - steering files under the global steering panel
 - approved skills
 - MCP servers from the installed `mcp.json`
-- global governance hooks installed as part of the baseline
 
 Also verify:
 - `openspec --version` works in a terminal
@@ -84,20 +84,26 @@ At minimum, the environment should expose:
 - AWS Docs MCP
 - GitHub MCP
 
-## 6. Understand the hybrid model
+## 6. Understand the central vs workspace model
 
-The Sixbell-Dev Way separates global and project-local assets.
+The Sixbell-Dev Way separates centrally installed assets, centrally curated catalogs, and project-local runtime assets.
 
-### Global assets
+### Globally installed assets
 Installed once per user:
 - steering
 - approved skills
 - approved MCP settings
-- stack-agnostic governance hooks
+
+### Centrally curated catalogs
+Maintained in the baseline repository:
+- the hook catalog under `baseline/global/hooks/`
+- the template catalog under `baseline/templates/`
+
+Kiro currently supports hooks only per workspace, so the catalog is the source of truth for approved hooks, but not the runtime location.
 
 ### Project assets
 Installed per repository through templates:
-- local `.kiro/hooks/`
+- local `.kiro/hooks/`, including governance hooks plus template-compatible automation hooks
 - `.github/` files
 - project docs
 - scripts used by formatting, linting, testing, and smoke hooks
@@ -129,6 +135,7 @@ The new repository should include the required baseline structure:
 Important:
 - the global installer does not copy a template into a new repository for you
 - the team must create the new repository from the chosen template
+- official templates carry the workspace-local governance hooks because Kiro does not currently load hooks from `~/.kiro/`
 - after copying the template, run `npm run bootstrap:openspec` and then `npm run bootstrap:verify` to generate approved Kiro and GitHub Copilot assets
 - then install the project's real dependencies and replace placeholder scripts with the selected toolchain
 
@@ -194,6 +201,11 @@ For day-to-day engineering work:
 ### Hooks behave incorrectly in a project
 - confirm the project template installed the expected local hooks
 - confirm the scripts referenced by the hooks actually exist in the project
+
+### Hooks do not appear after the global install
+- this is expected with current Kiro behavior, because hooks are loaded from the workspace rather than from `~/.kiro/`
+- open a repository created from an official Sixbell template and confirm it contains `.kiro/hooks/`
+- verify the workspace hook files are visible in the repository and then restart Kiro if needed
 
 ### OpenSpec commands or assets are missing
 - confirm `openspec --version` succeeds

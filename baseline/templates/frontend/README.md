@@ -4,7 +4,7 @@ Use this template for web-first repositories where the frontend is the main prod
 
 ## Included
 - required governance files
-- local `.kiro/hooks/`
+- local `.kiro/hooks/` with governance and frontend-compatible automation
 - `.github/pull_request_template.md`
 - an OpenSpec-native repository tree with the Sixbell custom schema
 - docs, ADR, API, and tests placeholders
@@ -20,6 +20,8 @@ Use this template for web-first repositories where the frontend is the main prod
 6. Create the first OpenSpec change under `openspec/changes/` before relevant implementation.
 
 ## Note
+
+The governance hooks are committed directly into this template because Kiro currently supports hooks only per workspace.
 
 This template intentionally keeps generated OpenSpec skills and prompts out of source control at the template-source level.
 

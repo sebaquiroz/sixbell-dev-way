@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "architecture-review-manual",
+  "description": "Manually triggered hook that reviews the current change from an architecture perspective according to The Sixbell-Dev Way, checking coupling, cohesion, complexity, reuse potential, and AWS-first compatibility.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the current change (git diff) from an architecture perspective according to The Sixbell-Dev Way.\n\nCheck the following areas:\n\n1. Coupling and cohesion\n2. Separation of responsibilities\n3. Readability and maintainability\n4. Risk of spaghetti code or god objects\n5. Unnecessary complexity or premature abstraction\n6. Reuse potential across Sixbell products\n7. Compatibility with AWS-first architectural direction\n\nFor each concern found:\n\n- Explain the issue clearly\n- Classify its severity (critical, major, minor)\n- Suggest a concrete remediation\n- Indicate whether an ADR (Architecture Decision Record) update is needed\n\nIf no concerns are found, confirm the change looks sound from an architecture perspective."
+  },
+  "shortName": "architecture-review-manual"
+}
